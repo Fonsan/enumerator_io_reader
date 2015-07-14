@@ -1,17 +1,25 @@
 Enumerator::IO::Reader
 =========================
 
+## Description
+
 Ever had a IO object you wanted to enumerate while not reading the whole stream into memory? no problems just use http://ruby-doc.org/core-2.2.2/IO.html#method-i-each_line and specify separator or any of it's siblings `#each_byte`, `#each_char` etc.
 
 But what if the situation was the opposite, you had your enumerable, in this case a database response that was to big for your wallet to fit in memory and the interface required a IO object to read from.
 
+Like `#put_object` in the legacy aws sdk
 http://www.rubydoc.info/gems/aws-sdk-euca/1.8.5/AWS/S3/Client:put_object
 
-A simple case first
+
+## Install
 
 `gem install enumerator_io_reader`
 
-```
+## Usage
+
+A simple case first
+
+```RUBY
 require 'enumerator/io/reader'
 range = "abc".."abz"
 io = Enumerator::IO::Reader.new(range.to_enum)
@@ -21,9 +29,9 @@ io.eof? # => true
 
 ```
 
-`#to_s` is called for every entry in the enumerable but pass a block to the constructor and you can serialize the object in a lazy manner after it has been yielded. The lazy mapping can of course be accomplished by something like `Enumerator::Lazy`.
+`#to_s` is called for every entry in the enumerable but pass a block to the constructor and you can serialize the object in a lazy manner after it has been yielded. The same lazy mapping can of course be accomplished by something like `Enumerator::Lazy`.
 
-```
+```RUBY
 require 'enumerator/io/reader'
 require 'csv'
 
@@ -39,7 +47,7 @@ s3.put_object(
 
 If you use this gem alot through out your project you might consider the following monkey patches
 
-```
+```RUBY
 module Enumerable
   def to_io(method = :each)
     Enumerator::IO::Reader.new(enum_for(method))
@@ -51,7 +59,7 @@ io = range.to_io
 io.read(20) # => "abcabdabeabfabgabhab"
 ```
 
-```
+```RUBY
 class Enumerator
   def to_io
     Enumerator::IO::Reader.new(self)
@@ -65,6 +73,8 @@ enumerator = Enumerator.new do |y|
 end
 enumerator.to_io.read # => "12"
 ```
+
+### License
 
 (The MIT License)
 
