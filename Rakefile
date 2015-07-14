@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "enumerator_io_reader"
   gem.homepage = "http://github.com/Fonsan/enumerator_io_reader"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Read a byte stream from your enumerable}
+  gem.description = %Q{Read a byte stream from your enumerable}
   gem.email = "fonsan@gmail.com"
   gem.authors = ["Fonsan"]
   # dependencies defined in Gemfile

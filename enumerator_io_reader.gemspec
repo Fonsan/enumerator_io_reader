@@ -10,9 +10,10 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
-  s.authors = ["fonsan@gmail.com"]
+  s.authors = ["Fonsan"]
   s.date = "2015-07-14"
-  s.description = "Treat your enumerators as readable IO streams"
+  s.description = "Read a byte stream from your enumerable"
+  s.files       = ["lib/enumerator/io/reader.rb"]
   s.email = "fonsan@gmail.com"
   s.extra_rdoc_files = [
     "README.md"
