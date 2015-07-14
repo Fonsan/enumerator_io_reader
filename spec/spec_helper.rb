@@ -1,0 +1,1 @@
+require 'enumerator/io/reader'
